@@ -44,5 +44,11 @@ Adds a Parspal payment form to your website using shortcodes.
 
 == Changelog ==
 
+= 1.0.1 =
+
+* حل مشکل انتقال پیدا نکردن به درگاه پرداخت
+* آپدیت کلاس پارس پال
+
 = 1.0 =
-* Just getting started!
+* شروع کردیم!
+
