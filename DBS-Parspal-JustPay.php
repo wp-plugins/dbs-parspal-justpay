@@ -6,7 +6,7 @@ Plugin URI: http://www.dbstheme.com/?s=parspal
 Description: اضافه کردن فرم پرداخت وجه با مبلغ تعیین شده توسط کاربر.
 Author: دی بی اس تم
 Author URI: http://dbstheme.com/
-Version: 1.0
+Version: 1.0.1
 */
 
 ! defined( 'ABSPATH' ) and exit;
@@ -72,7 +72,7 @@ function DBS_PP_JP_Shortcode() {
 					'phone'=>$_POST['DBS_PP_JP_Phone'],
 					'desc'=>$_POST['DBS_PP_JP_Desc']
 				);
-				$DBSparspal -> Go(array(
+				$go = $DBSparspal -> Go(array(
 					"price"       => $_POST['DBS_PP_JP_Amount'],
 					"return"  => get_permalink(), 
 					"resnum"   => md5(rand(99999,9999999999)), 
@@ -81,6 +81,12 @@ function DBS_PP_JP_Shortcode() {
 					"mail"       => $_POST['DBS_PP_JP_eMail'],
 					"mob"      => $_POST['DBS_PP_JP_Phone']
 				));
+				if( strlen( $go ) > 10 ) {
+					echo '<div class="msgbox do">در حال انتقال به درگاه پرداخت...</div>';
+					echo '<script type="text/javascript">window.location="' . $go . '";</script>';
+				} else {
+					echo '<div class="msgbox alret">خطای پرداخت: ' . $go . '</div>';
+				}
 			} else {
 				$dbs_err = true;
 			}

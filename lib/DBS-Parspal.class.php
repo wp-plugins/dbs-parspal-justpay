@@ -1,5 +1,7 @@
 <?php
 
+# Version 1.0.1
+
 class PP_JustPay_DBSParspal {
 
 	private $WSURL = "http://merchant.parspal.com/WebService.asmx?wsdl";
@@ -30,11 +32,9 @@ class PP_JustPay_DBSParspal {
 		));
 
 		if( $result->RequestPaymentResult->ResultStatus == 'Succeed' ){
-			ob_start();
-			header( 'Location: ' . $result->RequestPaymentResult->PaymentPath );
-			ob_end_clean();
+			return $result->RequestPaymentResult->PaymentPath;
 		} else {
-			die( $result->RequestPaymentResult->ResultStatus );
+			return $result->RequestPaymentResult->ResultStatus;
 		}
 
 	}
